@@ -33,4 +33,6 @@ int main() {
     }
 
     std::cout << m << ' ' << rightsum;
+
+    return 0;
 }
