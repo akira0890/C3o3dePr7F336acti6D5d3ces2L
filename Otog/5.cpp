@@ -1,38 +1,28 @@
 #include <iostream>
 
 int main() {
-    int leftsum = 0,rightsum = 0,i=1,n,m=0;
-    std::cin >> n;
-    leftsum = n;
+    std::cin.tie(nullptr)->std::ios_base::sync_with_stdio(false);
 
-    int templeftsum;
-    while (leftsum > rightsum) {
-        i=1;
-        rightsum = 0;
-        templeftsum = 0;
-        m = 0;
-        while (leftsum!=0) {
-            if (leftsum%3==1) {
-                rightsum += i;
-                m++;
-            } else if (leftsum%3==2) {
-                templeftsum += i;
-            }
-            leftsum/=3;
-            i*=3;
-        }
+    long long n , count = 0 , use = 0; std::cin >> n;
+    long long i = 1;
 
-        if (rightsum > n) {
-            int temp = rightsum - n;
-            while (temp != 0) {
-                if (temp%3==1) m++;
-                temp/=3;
-            }
+    while (n > 0) {
+        int remainder = n % 3;
+
+        if (remainder == 1 || remainder == 2) count++;
+
+        if (remainder == 1) {
+            use += i;
+            n /= 3;
+        } else if (remainder == 2) {
+            n = (n/3)+1;
+        } else {
+            n /= 3;
         }
-        leftsum = templeftsum + n;
+        i*=3;
     }
 
-    std::cout << m << ' ' << rightsum;
+    std::cout << count << ' ' << use;
 
     return 0;
 }
